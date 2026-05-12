@@ -18,9 +18,12 @@ export default function AdminInventory() {
   };
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div className="admin-panel">
       <h1>Адмін-панель</h1>
-      <table border="1" width="100%" style={{ borderCollapse: 'collapse' }}>
+      <Link to="/admin/create" className="btn btn-primary" style={{ marginBottom: '2rem', display: 'inline-block', marginLeft: 'auto', marginRight: 'auto', display: 'block', width: 'fit-content' }}>
+        Додати новий товар
+      </Link>
+      <table>
         <thead>
           <tr>
             <th>Прев'ю</th>
@@ -31,11 +34,15 @@ export default function AdminInventory() {
         <tbody>
           {inventory.map(item => (
             <tr key={item.id}>
-              <td><img src={item.photo} width="50" alt="" /></td>
+              <td><img src={item.photo} width="50" alt="" style={{ borderRadius: '8px' }} /></td>
               <td>{item.inventory_name}</td>
               <td>
-                <Link to={`/admin/edit/${item.id}`}>📝 Редагувати</Link>
-                <button onClick={() => handleDelete(item.id)} style={{ marginLeft: '10px', color: 'red' }}>🗑️ Видалити</button>
+                <Link to={`/admin/edit/${item.id}`} className="btn btn-primary" style={{ marginRight: '10px' }}>
+                  Редагувати
+                </Link>
+                <button onClick={() => handleDelete(item.id)} className="btn btn-danger">
+                  Видалити
+                </button>
               </td>
             </tr>
           ))}
